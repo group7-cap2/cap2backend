@@ -6,6 +6,7 @@ const fs = require("fs");
 const { json } = require("express");
 
 const audioBookRouter = require("./routers/routes/audiobook");
+const songRouter = require("./routers/routes/song");
 
 // const getData = async () => {
 //   const arr = await axios.get(
@@ -34,11 +35,9 @@ app.use(express.json());
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.status(200).json("hallow");
-});
 
 app.use("/audiobook", audioBookRouter);
+app.use("/song", songRouter);
 
 const PORT = process.env.PORT || 5000;
 

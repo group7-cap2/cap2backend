@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBooks } = require("./../controllers/audiobook");
+const { getAllBooks } = require("./../controllers/audiobook.js");
 
 const audioBookRouter = express.Router();
 
