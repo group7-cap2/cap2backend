@@ -1,12 +1,12 @@
 const axios = require("axios");
 const fs = require("fs");
 
-const getAllBooks = async (req, res) => {
+const getAllPodcast = async (req, res) => {
   const arr = await axios.get(
-    "https://itunes.apple.com/search?term=all&media=audiobook"
+    "https://itunes.apple.com/search?term=all&media=podcast"
   );
 
   res.status(200).json(arr.data.results);
 };
 
-module.exports = { getAllBooks };
+module.exports = { getAllPodcast };

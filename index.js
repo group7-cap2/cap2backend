@@ -3,10 +3,13 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const axios = require("axios");
 const fs = require("fs");
-const { json } = require("express");
+const helmet = require("helmet");
+// const { json } = require("express");
 
 const audioBookRouter = require("./routers/routes/audiobook");
+const movieRouter = require("./routers/routes/movie");
 const songRouter = require("./routers/routes/song");
+const podcastRouter = require("./routers/routes/podcast");
 const musicVideoRouter = require("./routers/routes/musicVideo");
 
 // const getData = async () => {
@@ -35,9 +38,12 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
+app.use(helmet());
 
 app.use("/audiobook", audioBookRouter);
+app.use("/movie", movieRouter);
 app.use("/song", songRouter);
+app.use("/podcast", podcastRouter);
 app.use("/musicVideo", musicVideoRouter);
 
 const PORT = process.env.PORT || 5000;
