@@ -1,6 +1,28 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const axios = require("axios");
+const fs = require("fs");
+const { json } = require("express");
+
+const getData = async () => {
+  const arr = await axios.get(
+    "https://itunes.apple.com/search?term=all&limit=50&media=musicVideo"
+  );
+
+  // fs.readFile("./db/test.json", (err, data) => {
+  //   const x = JSON.parse( data.toString())
+  //   console.log(x[0].kind);
+  // })
+
+  fs.writeFile(
+    "./db/musicVideo.json",
+    JSON.stringify(arr.data.results),
+    (err, data) => {}
+  );
+};
+
+getData();
 
 dotenv.config();
 
