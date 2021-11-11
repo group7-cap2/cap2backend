@@ -20,6 +20,14 @@ const getAllPodcast = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const getFavPodcast = async (req, res) => {
+  const arr = await axios.get(
+    `https://itunes.apple.com/lookup?id=${favList.podcast.join(",")}`
+  );
+
+  res.status(200).json(arr.data.results);
+};
+
 const addPodcastToFav = (req, res) => {
   favList.podcast.push(req.params.id);
 
@@ -33,4 +41,4 @@ const addPodcastToFav = (req, res) => {
   });
 };
 
-module.exports = { getAllPodcast, addPodcastToFav };
+module.exports = { getAllPodcast, getFavPodcast, addPodcastToFav };

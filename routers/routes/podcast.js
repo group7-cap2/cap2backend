@@ -1,10 +1,16 @@
 const express = require("express");
-const { getAllPodcast, addPodcastToFav } = require("./../controllers/podcast");
+const {
+  getAllPodcast,
+  getFavPodcast,
+  addPodcastToFav,
+} = require("./../controllers/podcast");
 
 const podcastRouter = express.Router();
 
 podcastRouter.get("/", getAllPodcast);
 
-podcastRouter.get("/addToFav/:id", addPodcastToFav);
+podcastRouter.get("/fav", getFavPodcast);
+
+podcastRouter.put("/addToFav/:id", addPodcastToFav);
 
 module.exports = podcastRouter;

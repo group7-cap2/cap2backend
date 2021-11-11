@@ -20,6 +20,14 @@ const getAllMovies = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const getFavMoives = async (req, res) => {
+  const arr = await axios.get(
+    `https://itunes.apple.com/lookup?id=${favList.movie.join(",")}`
+  );
+
+  res.status(200).json(arr.data.results);
+};
+
 const addMovieToFav = (req, res) => {
   favList.movie.push(req.params.id);
 
@@ -33,4 +41,4 @@ const addMovieToFav = (req, res) => {
   });
 };
 
-module.exports = { getAllMovies, addMovieToFav };
+module.exports = { getAllMovies, getFavMoives, addMovieToFav };

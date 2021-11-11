@@ -20,6 +20,14 @@ const getAllMusicVideos = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const getFavMusicVideos = async (req, res) => {
+  const arr = await axios.get(
+    `https://itunes.apple.com/lookup?id=${favList.musicVideo.join(",")}`
+  );
+
+  res.status(200).json(arr.data.results);
+};
+
 const addMusicVideoToFav = (req, res) => {
   favList.musicVideo.push(req.params.id);
 
@@ -33,4 +41,4 @@ const addMusicVideoToFav = (req, res) => {
   });
 };
 
-module.exports = { getAllMusicVideos, addMusicVideoToFav };
+module.exports = { getAllMusicVideos, getFavMusicVideos, addMusicVideoToFav };

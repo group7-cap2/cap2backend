@@ -20,19 +20,25 @@ const getAllBooks = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const getFavBooks = async (req, res) => {
+  const arr = await axios.get(
+    `https://itunes.apple.com/lookup?id=${favList.audiobook.join(",")}`
+  );
+
+  res.status(200).json(arr.data.results);
+};
+
 const addBookToFav = (req, res) => {
   favList.audiobook.push(req.params.id);
 
-  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err)=> {
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
     if (err) {
       console.log(err);
       return err;
     } else {
-      res.status(200).json("audiobood add to favorite")
+      res.status(200).json("audiobood add to favorite");
     }
-  } );
-
-  
+  });
 };
 
-module.exports = { getAllBooks, addBookToFav };
+module.exports = { getAllBooks, getFavBooks, addBookToFav };

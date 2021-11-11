@@ -1,10 +1,16 @@
 const express = require("express");
-const { getAllMusicVideos, addMusicVideoToFav } = require("./../controllers/musicVideo.js");
+const {
+  getAllMusicVideos,
+  getFavMusicVideos,
+  addMusicVideoToFav,
+} = require("./../controllers/musicVideo.js");
 
 const musicVideoRouter = express.Router();
 
 musicVideoRouter.get("/", getAllMusicVideos);
 
-musicVideoRouter.get("/addToFav/:id", addMusicVideoToFav);
+musicVideoRouter.get("/fav", getFavMusicVideos);
+
+musicVideoRouter.put("/addToFav/:id", addMusicVideoToFav);
 
 module.exports = musicVideoRouter;
