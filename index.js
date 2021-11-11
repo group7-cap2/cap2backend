@@ -5,24 +5,26 @@ const axios = require("axios");
 const fs = require("fs");
 const { json } = require("express");
 
-const getData = async () => {
-  const arr = await axios.get(
-    "https://itunes.apple.com/search?term=all&limit=50&media=musicVideo"
-  );
+const audioBookRouter = require("./routers/routes/audiobook");
 
-  // fs.readFile("./db/test.json", (err, data) => {
-  //   const x = JSON.parse( data.toString())
-  //   console.log(x[0].kind);
-  // })
+// const getData = async () => {
+//   const arr = await axios.get(
+//     "https://itunes.apple.com/search?term=all&limit=50&media=musicVideo"
+//   );
 
-  fs.writeFile(
-    "./db/musicVideo.json",
-    JSON.stringify(arr.data.results),
-    (err, data) => {}
-  );
-};
+//   // fs.readFile("./db/test.json", (err, data) => {
+//   //   const x = JSON.parse( data.toString())
+//   //   console.log(x[0].kind);
+//   // })
 
-getData();
+//   fs.writeFile(
+//     "./db/musicVideo.json",
+//     JSON.stringify(arr.data.results),
+//     (err, data) => {}
+//   );
+// };
+
+// getData();
 
 dotenv.config();
 
@@ -35,6 +37,8 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.status(200).json("hallow");
 });
+
+app.use("/audiobook", audioBookRouter);
 
 const PORT = process.env.PORT || 5000;
 
