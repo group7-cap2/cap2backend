@@ -11,7 +11,11 @@ const audioBookRouter = require("./routers/routes/audiobook");
 const movieRouter = require("./routers/routes/movie");
 const musicVideoRouter = require("./routers/routes/musicVideo");
 const podcastRouter = require("./routers/routes/podcast");
-const songRouter = require("./routers/routes/song");
+const songsRouter = require("./routers/routes/song");
+const soulRouter = require("./routers/routes/soul");
+const rockRouter = require("./routers/routes/rock");
+const popRouter = require("./routers/routes/pop");
+const kpopRouter = require("./routers/routes/kpop");
 
 // const getData = async () => {
 //   const arr = await axios.get(
@@ -46,7 +50,11 @@ app.use("/audiobook", audioBookRouter);
 app.use("/movie", movieRouter);
 app.use("/musicVideo", musicVideoRouter);
 app.use("/podcast", podcastRouter);
-app.use("/song", songRouter);
+app.use("/song", songsRouter);
+app.use("/kpop", kpopRouter);
+app.use("/pop", popRouter);
+app.use("/rock", rockRouter);
+app.use("/soul", soulRouter);
 
 const PORT = process.env.PORT || 5000;
 
