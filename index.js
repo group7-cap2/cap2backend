@@ -6,11 +6,12 @@ const fs = require("fs");
 const helmet = require("helmet");
 // const { json } = require("express");
 
+const allMediaRouter = require("./routers/routes/allMedia");
 const audioBookRouter = require("./routers/routes/audiobook");
 const movieRouter = require("./routers/routes/movie");
-const songRouter = require("./routers/routes/song");
-const podcastRouter = require("./routers/routes/podcast");
 const musicVideoRouter = require("./routers/routes/musicVideo");
+const podcastRouter = require("./routers/routes/podcast");
+const songRouter = require("./routers/routes/song");
 
 // const getData = async () => {
 //   const arr = await axios.get(
@@ -40,11 +41,12 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+app.use("/allMedia", allMediaRouter);
 app.use("/audiobook", audioBookRouter);
 app.use("/movie", movieRouter);
-app.use("/song", songRouter);
-app.use("/podcast", podcastRouter);
 app.use("/musicVideo", musicVideoRouter);
+app.use("/podcast", podcastRouter);
+app.use("/song", songRouter);
 
 const PORT = process.env.PORT || 5000;
 
