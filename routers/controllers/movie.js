@@ -28,6 +28,16 @@ const getFavMoives = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const isFav = async (req, res) => {
+  const find = favList.movie.find((item) => item == req.params.id);
+
+  if (find) {
+    res.status(200).json(true);
+  } else {
+    res.status(200).json(false);
+  }
+};
+
 const addMovieToFav = (req, res) => {
   favList.movie.push(req.params.id);
 
@@ -41,4 +51,23 @@ const addMovieToFav = (req, res) => {
   });
 };
 
-module.exports = { getAllMovies, getFavMoives, addMovieToFav };
+const removeFormFav = (req, res) => {
+  favList.movie = favList.movie.filter((item) => item != req.params.id);
+
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+    if (err) {
+      console.log(err);
+      return err;
+    } else {
+      res.status(200).json("movie removed from favorite");
+    }
+  });
+};
+
+module.exports = {
+  isFav,
+  removeFormFav,
+  getAllMovies,
+  getFavMoives,
+  addMovieToFav,
+};

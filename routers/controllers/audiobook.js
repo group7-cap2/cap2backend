@@ -28,6 +28,16 @@ const getFavBooks = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const isFav = async (req, res) => {
+  const find = favList.audiobook.find((item) => item == req.params.id);
+
+  if (find) {
+    res.status(200).json(true);
+  } else {
+    res.status(200).json(false);
+  }
+};
+
 const addBookToFav = (req, res) => {
   favList.audiobook.push(req.params.id);
 
@@ -36,9 +46,28 @@ const addBookToFav = (req, res) => {
       console.log(err);
       return err;
     } else {
-      res.status(200).json("audiobood add to favorite");
+      res.status(200).json("audiobook add to favorite");
     }
   });
 };
 
-module.exports = { getAllBooks, getFavBooks, addBookToFav };
+const removeFormFav = (req, res) => {
+  favList.audiobook = favList.audiobook.filter((item) => item != req.params.id);
+
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+    if (err) {
+      console.log(err);
+      return err;
+    } else {
+      res.status(200).json("audiobook removed from favorite");
+    }
+  });
+};
+
+module.exports = {
+  isFav,
+  removeFormFav,
+  getAllBooks,
+  getFavBooks,
+  addBookToFav,
+};

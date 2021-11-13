@@ -28,6 +28,16 @@ const getFavMusicVideos = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const isFav = async (req, res) => {
+  const find = favList.musicVideo.find((item) => item == req.params.id);
+
+  if (find) {
+    res.status(200).json(true);
+  } else {
+    res.status(200).json(false);
+  }
+};
+
 const addMusicVideoToFav = (req, res) => {
   favList.musicVideo.push(req.params.id);
 
@@ -41,4 +51,25 @@ const addMusicVideoToFav = (req, res) => {
   });
 };
 
-module.exports = { getAllMusicVideos, getFavMusicVideos, addMusicVideoToFav };
+const removeFormFav = (req, res) => {
+  favList.musicVideo = favList.musicVideo.filter(
+    (item) => item != req.params.id
+  );
+
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+    if (err) {
+      console.log(err);
+      return err;
+    } else {
+      res.status(200).json("musicvideo removed from favorite");
+    }
+  });
+};
+
+module.exports = {
+  isFav,
+  removeFormFav,
+  getAllMusicVideos,
+  getFavMusicVideos,
+  addMusicVideoToFav,
+};

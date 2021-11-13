@@ -12,6 +12,14 @@ fs.readFile("./db/favorite.json", (err, data) => {
   }
 });
 
+const getAllSongs = async (req, res) => {
+  const arr = await axios.get(
+    "https://itunes.apple.com/search?term=all&media=music&limit=100"
+  );
+
+  res.status(200).json(arr.data.results);
+};
+
 const getFavSongs = async (req, res) => {
   const arr = await axios.get(
     `https://itunes.apple.com/lookup?id=${favList.song.join(",")}`
@@ -20,13 +28,6 @@ const getFavSongs = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
-const getAllSongs = async (req, res) => {
-  const arr = await axios.get(
-    "https://itunes.apple.com/search?term=all&media=music&limit=100"
-  );
-
-  res.status(200).json(arr.data.results);
-};
 
 const isFav = async (req, res) => {
   const find = favList.song.find((item) => item == req.params.id);
