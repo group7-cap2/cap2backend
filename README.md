@@ -70,7 +70,7 @@ const getAllFav = async (req, res) => {
     }
   });
 };
-
+```
 
 the Second folder is routed that folder content CRUD opr (get,post,put,...) for Example -
 audioBookRouter.get("/", getAllBooks);
