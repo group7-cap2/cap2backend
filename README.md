@@ -80,21 +80,21 @@ soulRouter.get("/addToFav/:id", addSongToFav);
 
 
 ## Create Midillwares:
-
-`const allMediaRouter = require("./routers/routes/allMedia");`
-`const audioBookRouter = require("./routers/routes/audiobook");`
-`const movieRouter = require("./routers/routes/movie");`
-`const musicVideoRouter = require("./routers/routes/musicVideo");`
-`const podcastRouter = require("./routers/routes/podcast");`
-
+```
+const allMediaRouter = require("./routers/routes/allMedia");
+const audioBookRouter = require("./routers/routes/audiobook");
+const movieRouter = require("./routers/routes/movie");
+const musicVideoRouter = require("./routers/routes/musicVideo");
+const podcastRouter = require("./routers/routes/podcast");
+```
 ## use Midillwares:
-
-`app.use("/allMedia", allMediaRouter);`
-`app.use("/audiobook", audioBookRouter);`
-`app.use("/movie", movieRouter);`
-`app.use("/musicVideo", musicVideoRouter);`
-`app.use("/podcast", podcastRouter);`
-
+```
+app.use("/allMedia", allMediaRouter);
+app.use("/audiobook", audioBookRouter);
+app.use("/movie", movieRouter);
+app.use("/musicVideo", musicVideoRouter);
+app.use("/podcast", podcastRouter);
+```
 
 ## Waht we use:
 express.
