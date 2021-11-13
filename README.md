@@ -97,12 +97,12 @@ app.use("/podcast", podcastRouter);
 ```
 
 ## Waht we use:
-express.
-axios.
-nodemon.
-helmet.
-cors.
-FileSystem.
+- express.
+- axios.
+- nodemon.
+- helmet.
+- cors.
+- FileSystem.
 
 
 # iTunes Artwork API
