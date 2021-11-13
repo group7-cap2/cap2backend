@@ -28,6 +28,16 @@ const getAllSongs = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
+const isFav = async (req, res) => {
+  const find = favList.song.find((item) => item == req.params.id);
+
+  if (find) {
+    res.status(200).json(true);
+  } else {
+    res.status(200).json(false);
+  }
+};
+
 const addSongToFav = (req, res) => {
   favList.song.push(req.params.id);
 
@@ -41,8 +51,23 @@ const addSongToFav = (req, res) => {
   });
 };
 
+const removeFormFav = (req, res) => {
+  favList.song = favList.song.filter((item) => item != req.params.id);
+
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+    if (err) {
+      console.log(err);
+      return err;
+    } else {
+      res.status(200).json("song removed from favorite");
+    }
+  });
+};
+
 module.exports = {
   getAllSongs,
   getFavSongs,
+  isFav,
   addSongToFav,
+  removeFormFav,
 };
