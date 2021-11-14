@@ -41,13 +41,18 @@ const isFav = async (req, res) => {
 const addSongToFav = (req, res) => {
   favList.song.push(req.params.id);
 
-  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), async (err) => {
     if (err) {
       console.log(err);
       return err;
     } else {
       // res.status(200).json("song added to favorite");
-      res.status(200).json(favList);
+      const arr = await axios.get(
+        `https://itunes.apple.com/lookup?id=${favList.song.join(",")}`
+      );
+
+      res.status(200).json(arr.data.results);
+      // res.status(200).json(favList);
     }
   });
 };
@@ -55,13 +60,18 @@ const addSongToFav = (req, res) => {
 const removeFormFav = (req, res) => {
   favList.song = favList.song.filter((item) => item != req.params.id);
 
-  fs.writeFile("./db/favorite.json", JSON.stringify(favList), (err) => {
+  fs.writeFile("./db/favorite.json", JSON.stringify(favList), async (err) => {
     if (err) {
       console.log(err);
       return err;
     } else {
       // res.status(200).json("song removed from favorite");
-      res.status(200).json(favList);
+      const arr = await axios.get(
+        `https://itunes.apple.com/lookup?id=${favList.song.join(",")}`
+      );
+
+      res.status(200).json(arr.data.results);
+      // res.status(200).json(favList);
     }
   });
 };
