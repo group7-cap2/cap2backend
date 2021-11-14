@@ -28,7 +28,6 @@ const getFavSongs = async (req, res) => {
   res.status(200).json(arr.data.results);
 };
 
-
 const isFav = async (req, res) => {
   const find = favList.song.find((item) => item == req.params.id);
 
@@ -47,7 +46,8 @@ const addSongToFav = (req, res) => {
       console.log(err);
       return err;
     } else {
-      res.status(200).json("song added to favorite");
+      // res.status(200).json("song added to favorite");
+      res.status(200).json(favList);
     }
   });
 };
@@ -60,7 +60,8 @@ const removeFormFav = (req, res) => {
       console.log(err);
       return err;
     } else {
-      res.status(200).json("song removed from favorite");
+      // res.status(200).json("song removed from favorite");
+      res.status(200).json(favList);
     }
   });
 };
