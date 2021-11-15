@@ -1,6 +1,6 @@
 # cap2backend
 ![image](https://user-images.githubusercontent.com/92247858/141732486-baa046f2-68d6-4f9b-8264-422afde6d49f.png)
-website preview
+*website preview*
 
 ## iTunes API!!
 iTunes API is a simple REST server allowing you to query/control a local running iTunes instance. Once you have a way to make RESTful API calls to control iTunes, you can integrate its control into any of your own software.
