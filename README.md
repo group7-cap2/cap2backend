@@ -136,7 +136,7 @@ Allowed country codes are one of these - "us", "gb", "ca", "de", "se", "nl", "it
 The API wrapper searches only for music album covers by default. For searching other media (like book covers, app store icons, etc.), refer the Search API documentation here.
 Restify automatically URL-encodes the search query string, so spaces are okay to be sent in the GET body.
 
-#website demo
+# website demo
   https://music-hub7.herokuapp.com/
   
 # Team Work:
